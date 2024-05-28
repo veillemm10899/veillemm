@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Veillemm</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #e0e0e0;
+            scroll-behavior: smooth;
+        }
+        header {
+            background: #1f1f1f;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+        header ul {
+            display: flex;
+            gap: 10px;
+            padding: 0;
+            list-style: none;
+            margin: 0;
+            flex-wrap: wrap;
+        }
+        header ul li {
+            margin: 5px 0;
+        }
+        header ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+        header ul li a:hover, header ul li a.active {
+            color: #1db954;
+        }
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(29, 185, 84, 0.5), transparent);
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+        .hero h2 {
+            font-size: 2.5em;
+            color: #1db954;
+            margin: 0;
+            z-index: 1;
+        }
+        .hero p {
+            font-size: 1.1em;
+            color: #e0e0e0;
+            margin: 10px 0 20px;
+            z-index: 1;
+        }
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px auto;
+            border: 3px solid #1db954;
+            transition: transform 0.3s;
+            z-index: 1;
+        }
+        .profile-image:hover {
+            transform: scale(1.1);
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 2px solid #1db954;
+            border-radius: 5px;
+            color: #1db954;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+            z-index: 1;
+        }
+        .btn:hover {
+            background-color: #1db954;
+            color: #fff;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        .main-content {
+            background: #1f1f1f;
+            padding: 40px;
+            margin-bottom: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+        .main-content h2 {
+            color: #1db954;
+            border-bottom: 2px solid #1db954;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .main-content p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #e0e0e0;
+        }
+        .main-content a {
+            color: #1db954;
+            text-decoration: none;
+        }
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .skill {
+            background: #2c2c2c;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 150px;
+        }
+        .skill .flutter-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+        .skill i {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #1db954;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #1f1f1f;
+            color: #fff;
+            margin-top: 40px;
+        }
+        .footer p {
+            margin: 0;
+        }
+        .social-icons {
+            margin-top: 10px;
+        }
+        .social-icons a {
+            color: #e0e0e0;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.5em;
+            transition: color 0.3s;
+        }
+        .social-icons a:hover {
+            color: #1db954;
+        }
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 10px;
+            }
+            header .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            header h1 {
+                font-size: 1.4em;
+            }
+            header ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            header ul li {
+                margin: 5px 0;
+            }
+            .hero {
+                padding: 60px 20px;
+            }
+            .hero h2 {
+                font-size: 2em;
+            }
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+            .skills {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.2em;
+            }
+            header ul li a {
+                font-size: 0.9em;
+            }
+            .profile-image {
+                width: 100px;
+                height: 100px;
+            }
+            .skills {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .slide-in {
+            animation: slideIn 1s forwards;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .box-animation {
+            animation: boxAnimation 1s ease-in-out forwards;
+        }
+        @keyframes boxAnimation {
+            0% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Cyrus Vergara</h1>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="https://github.com/veillemm10899" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </header>
+    <section class="hero">
+        <img src="me.jpg" alt="Cyrus Vergara" class="profile-image">
+        <h2><span style="color: #ffffff;">Hi, I'm Cyrus Vergara</span></h2>
+<p><span style="color: #ffffff;">Android App & Web Developer</span></p>
+        <p>I excel in crafting intuitive mobile experiences and robust web solutions that empower users.</p>
+        <a href="#contact" class="btn">Hire Me</a>
+    </section>
+    <div class="container">
+        <section id="about" class="main-content box-animation">
+            <h2>About Me</h2>
+            <p>I'm Cyrus Vergara, a confident Android App and Web Developer based in the Philippines. With unwavering determination and a keen eye for innovation, I specialize in creating intuitive mobile experiences and robust web solutions that empower and inspire users.</p>
+<p>As a Computer Science graduate, I have honed my skills in various programming languages, development frameworks, and UX design principles. My journey has been marked by a relentless pursuit of excellence and a passion for pushing the boundaries of what's possible.</p>
+
+        </section>
+        <section id="skills" class="main-content box-animation">
+            <h2>Skills</h2>
+            <div class="skills">
+                <div class="skill">
+                    <img src="https://tse4.mm.bing.net/th?id=OIP.Je5oWMMO5GZPW_EWj7_w3QHaFb&pid=Api&P=0&h=180" alt="Flutter" class="flutter-icon">
+                    <p>Flutter</p>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-html5"></i>
+                    <p>HTML5</p>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-css3-alt"></i>
+                    <p>CSS3</p>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-js"></i>
+                    <p>JavaScript</p>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-react"></i>
+                    <p>React</p>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-node"></i>
+                    <p>Node.js</p>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-git-alt"></i>
+                    <p>Git</p>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-file-word"></i>
+                    <p>Microsoft Word</p>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-file-excel"></i>
+                    <p>Microsoft Excel</p>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-file-powerpoint"></i>
+                    <p>Microsoft PowerPoint</p>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-shield-alt"></i>
+                    <p>Cyber Security</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="education" class="main-content box-animation">
+            <h2>Education</h2>
+            <p><strong>Bachelor of Science in Computer Science - Major in Software Development</strong></p>
+            <p>Bataan Peninsula State University, 2024</p>
+            <p>As a graduate of Bataan Peninsula State University, I completed my Bachelor of Science in Computer Science with a specialization in Software Development. Throughout my academic journey, I actively participated in various projects and initiatives that enriched my understanding of software engineering principles and development methodologies.</p>
+            <p>Notable achievements during my time at BPSU include the creation of innovative systems and applications, ranging from mobile apps to automation solutions for Microsoft Word, Excel, and PDF formats. These projects not only showcased my technical skills but also honed my ability to solve complex problems and collaborate effectively within a team.</p>
+            <p>Graduating with honors, I emerged from BPSU equipped with a comprehensive skill set and a deep-rooted passion for leveraging technology to drive meaningful change in the world.</p>
+        </section>
+        
+        <section id="contact" class="main-content box-animation">
+            <h2>Let's Connect</h2>
+            <p>Got an exciting project or creative idea in mind? Don't hesitate to reach out!</p>
+            <p>You can shoot me an email at <a href="mailto:veillemm1089@gmail.com">veillemm1089@gmail.com</a> to discuss your vision or simply say hello.</p>
+            <p>For a closer look at my projects and contributions, feel free to explore my <a href="https://github.com/veillemm10899" target="_blank">GitHub profile</a>.</p>
+            <p>Let's stay connected on social media:</p>
+            <ul>
+                <li><a href="https://web.facebook.com/veil.lemm/" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
+                <li><a href="https://twitter.com/Veillemmmm" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+            </ul>
+            <p>I'm always eager to collaborate on exciting projects, exchange creative ideas, or simply engage in meaningful conversations. Let's make something awesome together!</p>
+        </section>
+        
+    </div>
+    <footer class="footer">
+        <p>&copy; 2024 Veillemm. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="https://github.com/veillemm10899" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://web.facebook.com/veil.lemm/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://twitter.com/Veillemmmm" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+    <script>
+        document.querySelectorAll('header ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - document.querySelector('header').offsetHeight,
+                        behavior: 'smooth'
+                    });
+                }
+                document.querySelectorAll('header ul li a').forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        const sections = document.querySelectorAll('.main-content');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        sections.forEach(section => observer.observe(section));
+    </script>
+</body>
+</html>
